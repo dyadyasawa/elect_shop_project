@@ -1,3 +1,5 @@
+from csv import DictReader
+
 class Item:
     """
     Класс для представления товара в магазине.
