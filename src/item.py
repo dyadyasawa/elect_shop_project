@@ -45,15 +45,15 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls, csv_file):
-        with open(csv_file, newline='') as f:
+        cls.all.clear()
+        with open(f'../{csv_file}', newline='', encoding='windows-1251') as f:
             reader = DictReader(f)
             for row in reader:
-                instance = Item(row['name'], row['price'], row['quantity'])
-            return instance
+                Item(name=row['name'], price=float(row['price']), quantity=int(row['quantity']))
 
     @staticmethod
     def string_to_number(str_num):
-        return int(str_num)
+        return int(float(str_num))
 
 
 
