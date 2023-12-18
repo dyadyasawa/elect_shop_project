@@ -45,6 +45,8 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls, csv_file):
+        """класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv"""
+
         cls.all.clear()
         with open(f'../{csv_file}', newline='', encoding='windows-1251') as f:
             reader = DictReader(f)
@@ -53,6 +55,8 @@ class Item:
 
     @staticmethod
     def string_to_number(str_num):
+        """статический метод, возвращающий число из числа-строки"""
+
         return int(float(str_num))
 
 
