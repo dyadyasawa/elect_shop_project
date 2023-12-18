@@ -1,4 +1,3 @@
-import csv
 from csv import DictReader
 
 class Item:
@@ -21,6 +20,14 @@ class Item:
         self.quantity = quantity
 
         Item.all.append(self)
+
+    @property
+    def name(self):
+        return self.__name[0:10]
+
+    @name.setter
+    def name(self, value):
+        self.__name = value
 
     def calculate_total_price(self) -> float:
         """
@@ -49,14 +56,4 @@ class Item:
         return int(str_num)
 
 
-    @property
-    def name(self):
-        return self.__name
 
-
-    @name.setter
-    def name(self, value):
-        if len(value) <= 10:
-            self.__name = value
-        else:
-            self.__name = value[:10]
