@@ -1,3 +1,4 @@
+import csv
 from csv import DictReader
 
 class Item:
@@ -35,6 +36,18 @@ class Item:
         """
         self.price *= Item.pay_rate
 
+    @classmethod
+    def instantiate_from_csv(cls, csv_file):
+        with open(csv_file, newline='') as f:
+            reader = DictReader(f)
+            for row in reader:
+                instance = Item(row['name'], row['price'], row['quantity'])
+            return instance
+
+    @staticmethod
+    def string_to_number(str_num):
+        return int(str_num)
+
 
     @property
     def name(self):
@@ -42,8 +55,8 @@ class Item:
 
 
     @name.setter
-    def name(self):
-        if len(self.__name) <= 10:
-            return self.__name
+    def name(self, value):
+        if len(value) <= 10:
+            self.__name = value
         else:
-            return self.__name[:10]
+            self.__name = value[:10]
