@@ -2,6 +2,7 @@
 from src.item import Item
 
 product = Item('Телевизор', 30000, 5)
+product_2 =Item('Холодильник', 55000, 2)
 Item.pay_rate = 2.0
 
 def test_calculate_total_price():
@@ -17,3 +18,26 @@ def test_item_apply_discount():
     Item.apply_discount(product)
 
     assert product.price == 60000
+
+def test_len_name():
+    """Тест формирования name с учетом заданной длины """
+
+    assert product.name == 'Телевизор'
+    assert product_2.name == 'Холодильни'
+
+
+def test_instantiate_from_csv():
+    """Тест метода instantiate_from_csv"""
+    Item.all.clear()
+    Item.instantiate_from_csv('src/items.csv')
+    assert len(Item.all) == 5
+    item1 = Item.all[0]
+    assert item1.name == 'Смартфон'
+
+
+def test_string_to_number():
+    """Тест метода string_to_number"""
+
+    assert Item.string_to_number('6.8') == 6
+    assert Item.string_to_number('11.0') == 11
+    assert Item.string_to_number('53.1') == 53
