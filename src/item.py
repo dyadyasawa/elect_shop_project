@@ -48,7 +48,7 @@ class Item:
         """класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv"""
 
         cls.all.clear()
-        with open(f'../{csv_file}', newline='', encoding='windows-1251') as f:
+        with open(csv_file, newline='', encoding='windows-1251') as f:
             reader = DictReader(f)
             for row in reader:
                 Item(name=row['name'], price=float(row['price']), quantity=int(row['quantity']))

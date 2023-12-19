@@ -24,3 +24,20 @@ def test_len_name():
 
     assert product.name == 'Телевизор'
     assert product_2.name == 'Холодильни'
+
+
+def test_instantiate_from_csv():
+    """Тест метода instantiate_from_csv"""
+    Item.all.clear()
+    Item.instantiate_from_csv('src/items.csv')
+    assert len(Item.all) == 5
+    item1 = Item.all[0]
+    assert item1.name == 'Смартфон'
+
+
+def test_string_to_number():
+    """Тест метода string_to_number"""
+
+    assert Item.string_to_number('6.8') == 6
+    assert Item.string_to_number('11.0') == 11
+    assert Item.string_to_number('53.1') == 53
