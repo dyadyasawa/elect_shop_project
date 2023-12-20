@@ -41,3 +41,17 @@ def test_string_to_number():
     assert Item.string_to_number('6.8') == 6
     assert Item.string_to_number('11.0') == 11
     assert Item.string_to_number('53.1') == 53
+
+
+def test_str():
+    """Тест метода __str__"""
+
+    assert str(product) == 'Телевизор'
+    assert str(product_2) == 'Холодильник'
+
+
+def test_repr():
+    """Тест метода __repr__"""
+
+    assert repr(product) == "Item('Телевизор', 60000.0, 5)"
+    assert repr(product_2) == "Item('Холодильник', 55000, 2)"
