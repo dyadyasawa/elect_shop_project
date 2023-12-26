@@ -30,7 +30,7 @@ class Item:
         return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
     def __add__(self, other):
-        return int(self.quantity) + int(other.quantity)
+        return self.quantity + other.quantity
 
 
     @property
