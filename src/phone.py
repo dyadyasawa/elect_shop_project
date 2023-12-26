@@ -13,4 +13,6 @@ class Phone(Item):
         return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity}, {self.number_of_sim})"
 
     def __add__(self, other):
-        return int(self.quantity) + int(other.quantity)
+        if not isinstance(other, Item):
+            raise ValueError('Складывать можно только атрибуты экземпляров классов Item и Phohe')
+        return self.quantity + other.quantity
