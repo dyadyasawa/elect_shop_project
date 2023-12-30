@@ -2,6 +2,7 @@ from src.item import Item
 
 
 class MixinKeyboard:
+    """ Класс-миксин для “подмешивания” в цепочку наследования класса `Keyboard` """
     def __init__(self, language='EN'):
         self.__language = language
 
@@ -21,4 +22,5 @@ class MixinKeyboard:
 
 
 class Keyboard(Item, MixinKeyboard):
+    """ Класс Keyboard для товара “клавиатура” """
     pass
