@@ -11,6 +11,13 @@ class MixinKeyboard:
         elif self.__language == 'RU':
             self.__language = 'EN'
 
+    @property
+    def language(self):
+        return self.__language
+
+    @language.setter
+    def language(self, value):
+        raise AttributeError('Язык менять нельзя!')
 
 
 class Keyboard(Item, MixinKeyboard):
