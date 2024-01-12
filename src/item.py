@@ -59,13 +59,14 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls, csv_file='../src/items.csv'):
         """класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv"""
-
-        cls.all.clear()
-        with open(csv_file, newline='', encoding='windows-1251') as f:
-            reader = DictReader(f)
-            for row in reader:
-                Item(name=row['name'], price=float(row['price']), quantity=int(row['quantity']))
-
+        try:
+            cls.all.clear()
+            with open(csv_file, newline='', encoding='windows-1251') as f:
+                reader = DictReader(f)
+                for row in reader:
+                    Item(name=row['name'], price=float(row['price']), quantity=int(row['quantity']))
+        except FileNotFoundError:
+            print('Отсутствует файл item.csv')
     @staticmethod
     def string_to_number(str_num):
         """статический метод, возвращающий число из числа-строки"""
