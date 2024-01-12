@@ -1,9 +1,11 @@
 
 from csv import DictReader
 
+
 class InstantiateCSVError(Exception):
     """Пользовательский класс исключение."""
     pass
+
 
 class Item:
     """
@@ -27,17 +29,14 @@ class Item:
 
         Item.all.append(self)
 
-
     def __str__(self):
         return self.__name
-
 
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
     def __add__(self, other):
         return self.quantity + other.quantity
-
 
     @property
     def name(self):
@@ -66,7 +65,7 @@ class Item:
         """класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv"""
         try:
             cls.all.clear()
-            with open(csv_file, newline='', encoding='windows-1251') as f:
+            with open(csv_file, newline='', encoding='utf-8') as f:
                 reader = DictReader(f)
                 if len(reader.fieldnames) != 3:
                     raise InstantiateCSVError
@@ -76,6 +75,7 @@ class Item:
             print('Отсутствует файл item.csv')
         except InstantiateCSVError:
             print('Файл item.csv поврежден')
+
     @staticmethod
     def string_to_number(str_num):
         """статический метод, возвращающий число из числа-строки"""

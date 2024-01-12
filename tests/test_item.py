@@ -1,10 +1,12 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 from src.item import Item
 from src.item import InstantiateCSVError
+import pytest
 
 product = Item('Телевизор', 30000, 5)
 product_2 =Item('Холодильник', 55000, 2)
 Item.pay_rate = 2.0
+
 
 def test_calculate_total_price():
     """Тест функции calculate_total_price"""
@@ -20,6 +22,7 @@ def test_item_apply_discount():
 
     assert product.price == 60000
 
+
 def test_len_name():
     """Тест формирования name с учетом заданной длины """
 
@@ -34,6 +37,12 @@ def test_instantiate_from_csv():
     assert len(Item.all) == 5
     item1 = Item.all[0]
     assert item1.name == 'Смартфон'
+
+
+def test_instantiate_from_csv_file_not_found():
+    """ Тест на возникновение исключения при отсутствии файла. """
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv('it.csv')
 
 
 def test_string_to_number():
