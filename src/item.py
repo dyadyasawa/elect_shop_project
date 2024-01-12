@@ -68,10 +68,14 @@ class Item:
             cls.all.clear()
             with open(csv_file, newline='', encoding='windows-1251') as f:
                 reader = DictReader(f)
+                if len(reader.fieldnames) != 3:
+                    raise InstantiateCSVError
                 for row in reader:
-                    Item(name=row['name'], price=float(row['price']), quantity=int(row['quantity']))
+                    cls(name=row['name'], price=float(row['price']), quantity=int(row['quantity']))
         except FileNotFoundError:
             print('Отсутствует файл item.csv')
+        except InstantiateCSVError:
+            print('Файл item.csv поврежден')
     @staticmethod
     def string_to_number(str_num):
         """статический метод, возвращающий число из числа-строки"""
