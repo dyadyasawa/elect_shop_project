@@ -75,6 +75,8 @@ class Item:
             print('Отсутствует файл item.csv')
         except InstantiateCSVError:
             print('Файл item.csv поврежден')
+        finally:
+            pass
 
     @staticmethod
     def string_to_number(str_num):

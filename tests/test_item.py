@@ -45,6 +45,12 @@ def test_instantiate_from_csv_file_not_found():
         Item.instantiate_from_csv('it.csv')
 
 
+def test_test_instantiate_from_csv_file_failed():
+    """ Тест на возникновение исключения при поврежденном файле. """
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv('src/items_failed.csv')
+
+
 def test_string_to_number():
     """Тест метода string_to_number"""
 
