@@ -1,4 +1,9 @@
+
 from csv import DictReader
+
+class InstantiateCSVError(Exception):
+    """Пользовательский класс исключение."""
+    pass
 
 class Item:
     """
