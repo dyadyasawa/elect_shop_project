@@ -57,7 +57,7 @@ class Item:
         self.price *= Item.pay_rate
 
     @classmethod
-    def instantiate_from_csv(cls, csv_file):
+    def instantiate_from_csv(cls, csv_file='../src/items.csv'):
         """класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv"""
 
         cls.all.clear()
