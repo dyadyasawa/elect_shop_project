@@ -1,5 +1,6 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 from src.item import Item
+from src.item import InstantiateCSVError
 
 product = Item('Телевизор', 30000, 5)
 product_2 =Item('Холодильник', 55000, 2)
