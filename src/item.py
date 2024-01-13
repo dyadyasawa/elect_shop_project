@@ -1,6 +1,6 @@
 
 from csv import DictReader
-
+import os
 
 class InstantiateCSVError(Exception):
     """Пользовательский класс исключение."""
@@ -63,24 +63,20 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls, csv_file='../src/items_failed.csv'):
         """класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv"""
-        try:
-            cls.all.clear()
-            with open(csv_file, newline='', encoding='utf-8') as f:
-                reader = DictReader(f)
-                if len(reader.fieldnames) != 3:
-                    raise InstantiateCSVError
-                for row in reader:
-                    cls(name=row['name'], price=float(row['price']), quantity=int(row['quantity']))
-        except FileNotFoundError:
-            print('Отсутствует файл item.csv')
-        except InstantiateCSVError:
-            print('Файл item.csv поврежден')
-        finally:
-            pass
+        cls.all.clear()
+        if not os.path.exists(csv_file):
+            raise FileNotFoundError('Отсутствует файл items.csv')
+
+        with open(csv_file, newline='', encoding='utf-8') as f:
+            reader = DictReader(f)
+            if len(reader.fieldnames) != 3:
+                 raise InstantiateCSVError('Файл item.csv поврежден')
+            for row in reader:
+                cls(name=row['name'], price=float(row['price']), quantity=int(row['quantity']))
 
     @staticmethod
     def string_to_number(str_num):
-        """статический метод, возвращающий число из числа-строки"""
+        """ Статический метод, возвращающий число из числа-строки """
 
         return int(float(str_num))
 
