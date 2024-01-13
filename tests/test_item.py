@@ -33,7 +33,7 @@ def test_len_name():
 def test_instantiate_from_csv():
     """Тест метода instantiate_from_csv"""
     Item.all.clear()
-    Item.instantiate_from_csv('src/items.csv')
+    Item.instantiate_from_csv('../src/items.csv')
     assert len(Item.all) == 5
     item1 = Item.all[0]
     assert item1.name == 'Смартфон'
@@ -48,7 +48,7 @@ def test_instantiate_from_csv_file_not_found():
 def test_test_instantiate_from_csv_file_failed():
     """ Тест на возникновение исключения при поврежденном файле. """
     with pytest.raises(InstantiateCSVError):
-        Item.instantiate_from_csv('src/items_failed.csv')
+        Item.instantiate_from_csv()
 
 
 def test_string_to_number():
